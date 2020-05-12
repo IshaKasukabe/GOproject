@@ -1,0 +1,108 @@
+{
+  "users": [
+    {
+      "login": "tabakov1999",
+      "email": "tabakov1999@yandex.ru",
+      "password": "1999dfyz",
+      "nick": "lapOCHKA",
+      "firstName": "Иван",
+      "lastName": "Табаков",
+      "about": null,
+      "age": "10.05.2020",
+      "region": "Нижегородская (Горьковская)",
+      "city": "Нижний Новгород",
+      "interests": [
+        "Игры"
+      ],
+      "dateReg": "10.05.2020",
+      "idNotification": [
+        0,
+        1
+      ],
+      "idEnterNotififcation": [
+        0
+      ],
+      "idFriends": [
+        0
+      ],
+      "idMessages": [
+        0
+      ],
+      "idComments": [
+        0
+      ],
+      "id": 1
+    }
+  ],
+  "company": [
+    {
+      "login": null,
+      "email": "tabakov99@yandex.ru",
+      "password": "1999dfyz",
+      "nick": "Pupa",
+      "companyName": "OOO Ban",
+      "about": "blabla",
+      "region": "Нижегородская (Горьковская)",
+      "city": "Нижний Новгород",
+      "interests": [
+        "Игры"
+      ],
+      "dateReg": "11.05.2020",
+      "idNotification": [
+        0,
+        2
+      ],
+      "idFriends": [
+        0
+      ],
+      "idMessages": [
+        0
+      ],
+      "idComments": [
+        0
+      ],
+      "id": 1
+    }
+  ],
+  "notifications": [
+    {
+      "name": "123",
+      "about": "123",
+      "interests": [
+        "Игры"
+      ],
+      "timeBegin": "23:52",
+      "timeEnd": "02:00",
+      "day": "10.05.2020",
+      "region": "Нижегородская (Горьковская)",
+      "city": "Нижний Новгород",
+      "userId": 1,
+      "companyId": null,
+      "commentsId": [
+        0
+      ],
+      "id": 1
+    },
+    {
+      "name": "ggg",
+      "about": "ggg",
+      "interests": [
+        "Игры"
+      ],
+      "timeBegin": "01:00",
+      "timeEnd": "06:00",
+      "day": "11.05.2020",
+      "region": "Нижегородская (Горьковская)",
+      "city": "Нижний Новгород",
+      "userId": null,
+      "companyId": 1,
+      "commentsId": [
+        0
+      ],
+      "id": 2
+    }
+  ],
+  "images": [
+
+  ]
+}

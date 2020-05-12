@@ -1,0 +1,15 @@
+
+<div class="content">
+  <ul>
+    <li>
+      <label> {{item.name}} </label><br>
+      <label> Время начала: {{item.timeBegin}} </label><br>
+      <label> Время окончания: {{item.timeEnd}} </label><br>
+      <label *ngIf="itUser" (click)="toUserProfile()"> Пользователь: {{user.nick}} </label> <br>
+      <label *ngIf="itCompany" (click)="toCompanyProfile()"> Пользователь: {{company.nick}} </label> <br>
+    <li>
+      <button (click)="toSee(item.id)"> Подробнее </button>
+    </li>
+  </ul>
+</div>
+<br>

@@ -1,0 +1,53 @@
+<p>notification-editing works!</p>
+
+<div class="notification-editing">
+  <div class="notification-form">
+    <form [formGroup]="formNotification" (ngSubmit)="onSubmit()">
+      <div class="login-form">
+        <input class="input-login-form" type="text" placeholder="Название" formControlName="name">
+        <br>
+        <input class="input-login-form" type="text" placeholder="Описание" formControlName="about">
+        <br>
+        <select (change)="addInterest($event.target.value)">
+          <option *ngFor="let interest of interests" [value]="interest"> {{interest}} </option>
+        </select>
+        <div formArrayName="interests">
+          <div *ngFor="let interest of formNotification.controls['interests'].value; let i = index">
+            {{interest}}
+            <button (click)="deleteInterest(i)">удалить</button>
+          </div>
+        </div>
+        <p> Время начала: </p>
+        <input [popover] = "timeB"  triggers="click" formControlName="timeBegin" [(ngModel)]="timeBeginRed" (focus)="updateTimeBeginRed()"><br>
+        <p> Время конца: </p>
+        <input [popover] = "timeE" triggers="click" formControlName="timeEnd" [(ngModel)]="timeEndRed" (focus)="updateTimeEndRed()"><br>
+        <br>
+        <input type="text" formControlName="day" style="position: absolute; left: 50px" placeholder="День" bsDatepicker [bsValue]="dateExecution" [bsConfig]="{ dateInputFormat: 'DD.MM.YYYY', containerClass: 'theme-default'}" [minDate]="minDateExecution">
+        <br>
+        <p>Местоположение: </p>
+        <button type="button" (click)="enterDefaultRegionAndCity()"> По умолчанию</button>
+        <br>
+        <input [(ngModel)]="enterRegion" [typeahead]="regions" [typeaheadHideResultsOnBlur]="false" placeholder="Область" formControlName="region" (focusin)="deleteCities()" (click)="getCityByRegion()" (mouseleave)="getCityByRegion()" (focusout)="getCityByRegion()">
+        <br>
+        <input [(ngModel)]="enterCity" [typeahead]="cities" [typeaheadHideResultsOnBlur]="false" placeholder="Город" formControlName="city" >
+        <br>
+        <button type="submit">
+          Оставить GO
+        </button>
+        <br>
+      </div>
+    </form>
+  </div>
+  <div class="notification-button" >
+    <button (click)="toMainPage()"> На главную</button>
+  </div>
+</div>
+
+
+<ng-template #timeB>
+  <timepicker [(ngModel)]="timeBeginning" [showMeridian]="false" [minuteStep]="1"></timepicker>
+</ng-template>
+
+<ng-template #timeE>
+  <timepicker [(ngModel)]="timeEnding" [showMeridian]="false" [minuteStep]="1"></timepicker>
+</ng-template>

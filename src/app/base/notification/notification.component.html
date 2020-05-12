@@ -1,0 +1,14 @@
+<div>
+  <div class="notification-name">
+      Название: {{notification.name}}
+  </div>
+  <div class="notification-about">
+    <p> Описание {{notification.about}} </p>
+    <p class="date"> Время начала {{notification.timeBegin}} </p>
+    <p class="date"> Время окончания {{notification.timeEnd}}</p>
+  </div>
+  <div class="notification-button">
+    <button *ngIf="canDelete" (click)="deleteNotification()"> Удалить GO</button>
+    <button (click)="toMainPage()"> На главную</button>
+  </div>
+</div>

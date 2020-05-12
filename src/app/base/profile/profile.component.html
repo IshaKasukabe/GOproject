@@ -1,0 +1,24 @@
+<div>
+  <div class="profile-see" *ngIf="itUser">
+    <div>
+      <label>Ник: {{userSee.nick}}</label><br>
+      <label>Имя Фамилия: {{userSee.lastName}} {{userSee.firstName}}</label><br>
+      <label>Интересы: </label>
+      <label *ngFor="let interest of userSee.interests"> {{interest}}</label><br>
+      <label>О себе: {{userSee.about}}</label><br>
+      <app-notification-card *ngFor="let notification of notifications" [item]="notification"></app-notification-card>
+      <button *ngIf="canEditing" (click)="toEditing()"> Редактировать</button>
+    </div>
+  </div>
+  <div class="profile-see" *ngIf="itCompany">
+    <div>
+      <label>Ник: {{this.companySee.nick}}</label><br>
+      <label>Название компании: {{this.companySee.companyName}}</label><br>
+      <label *ngFor="let interest of companySee.interests"> {{interest}}</label><br>
+      <label> О себе: {{this.companySee.about}}</label><br>
+      <app-notification-card *ngFor="let notification of notifications" [item]="notification"></app-notification-card>
+      <button *ngIf="canEditing" (click)="toEditing()"> Редактировать</button>
+    </div>
+  </div>
+  <button (click)="toMainPage()"> На главную </button>
+</div>

@@ -1,0 +1,92 @@
+<div>
+  <div class="to-login">
+    <a (click)="toLogin()"> Вернуться ко входу</a>
+  </div>
+  <div class="type-registration">
+    <p>Выберите тип пользователя</p>
+    <div class="check-type-registration">
+      <p> Индвидуальный </p>
+      <input type="checkbox" (click)="showUserReg()" [checked]="userRegType">
+    </div>
+    <div class="check-type-registration">
+      <p> Компания </p>
+      <input type="checkbox" (click)="showCompanyReg()" [checked]="companyRegType">
+    </div>
+  </div>
+
+  <div *ngIf="userRegType" class="registration-form">
+    <form [formGroup]="formUser" (ngSubmit)="onSubmitUser()">
+      <div class="login-form">
+        <input class="input-login-form" type="text" placeholder="Логин" formControlName="login">
+        <br>
+        <input class="input-login-form" type="text" placeholder="Email" formControlName="email">
+        <br>
+        <input class="input-login-form" type="password" placeholder="Пароль" formControlName="password">
+        <br>
+
+        <input class="input-login-form" type="text" placeholder="Ник" formControlName="nick">
+        <br>
+        <input class="input-login-form" type="text" placeholder="Имя" formControlName="firstName">
+        <br>
+        <input class="input-login-form" type="text" placeholder="Фамилия" formControlName="lastName">
+        <br>
+        <select (change)="addInterest($event.target.value)">
+          <option *ngFor="let interest of interests" [value]="interest"> {{interest}} </option>
+        </select>
+        <div formArrayName="interests">
+          <div *ngFor="let interest of formUser.controls['interests'].value; let i = index">
+              {{interest}}
+            <button (click)="deleteInterest(i)">удалить</button>
+          </div>
+        </div>
+        <input [(ngModel)]="enterRegion" [typeahead]="regions" [typeaheadHideResultsOnBlur]="false" placeholder="Область" formControlName="region" (focus)="deleteCities()" (change)="getCityByRegion()">
+        <br>
+        <input [(ngModel)]="enterCity" [typeahead]="cities" [typeaheadHideResultsOnBlur]="false" placeholder="Город" formControlName="city" >
+        <br>
+        <input type="text" style="position: absolute; left: 50px" placeholder="Год рождения" bsDatepicker [bsValue]="dateBirthday">
+        <br>
+        <button type="submit">
+          Зарегистрироваться
+        </button>
+        <br>
+      </div>
+    </form>
+  </div>
+
+  <div *ngIf="companyRegType" class="registration-form">
+    <form [formGroup]="formCompany" (ngSubmit)="onSubmitCompany()">
+      <div class="login-form">
+        <input class="input-login-form" type="text" placeholder="Логин" formControlName="login">
+        <br>
+        <input class="input-login-form" type="text" placeholder="Почта" formControlName="email">
+        <br>
+        <input class="input-login-form" type="password" placeholder="Пароль" formControlName="password">
+        <br>
+        <input class="input-login-form" type="text" placeholder="Ник" formControlName="nick">
+        <br>
+        <input class="input-login-form" type="text" placeholder="Название компании" formControlName="companyName">
+        <br>
+        <select (change)="addInterest($event.target.value)">
+          <option *ngFor="let interest of interests" [value]="interest"> {{interest}} </option>
+        </select>
+        <div formArrayName="interests">
+          <div *ngFor="let interest of formUser.controls['interests'].value; let i = index">
+            {{interest}}
+            <button (click)="deleteInterest(i)">удалить</button>
+          </div>
+        </div>
+        <input [(ngModel)]="enterRegion" [typeahead]="regions" [typeaheadHideResultsOnBlur]="false" placeholder="Область" formControlName="region" (focus)="deleteCities()" (change)="getCityByRegion()">
+        <br>
+        <input [(ngModel)]="enterCity" [typeahead]="cities" [typeaheadHideResultsOnBlur]="false" placeholder="Город" formControlName="city" >
+        <br>
+        <button type="submit">
+          Зарегистрироваться
+        </button>
+        <br>
+      </div>
+    </form>
+  </div>
+
+
+</div>
+
