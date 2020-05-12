@@ -9,7 +9,7 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "server": "json-server --watch db.json --port 3100",
-    "deploy": "ng build --prod --base-href https://IshaKasukabe.github.io/GOproject/ && angular-cli-ghpages --branch gh-pages"
+    "deploy": "ng build --prod --base-href https://IshaKasukabe.github.io/GOproject/"
   },
   "private": true,
   "dependencies": {
