@@ -3,7 +3,7 @@ import {ImageService} from "../../shared/service/image.service";
 import { AngularFireDatabase} from 'angularfire2/database';
 import * as firebase from 'firebase';
 import {FormArray, FormControl, FormGroup} from "@angular/forms";
-import {User} from "firebase";
+import { User } from "../../shared/model/user.model"
 import {Company} from "../../shared/model/company.model";
 @Component({
   selector: 'app-profile-editing',
@@ -30,45 +30,44 @@ export class ProfileEditingComponent implements OnInit {
       this.company = null;
       this.itUser = true;
       this.itCompany = false;
+      this.formUser = new FormGroup(
+        {
+          'nick': new FormControl(this.user.nick),
+          'firstName': new FormControl(this.user.firstName),
+          'lastName': new FormControl(this.user.lastName),
+          'region': new FormControl(this.user.region),
+          'city': new FormControl(this.user.city),
+          'interests': new FormArray([
+          ])
+        }
+      );
     } else if (window.localStorage.getItem('company')) {
       this.company = JSON.parse(window.localStorage.getItem('company'));
       this.user = null;
       this.itUser = false;
       this.itCompany = true;
+
+      this.formCompany = new FormGroup(
+        {
+          'nick': new FormControl(this.company.nick),
+          'companyName': new FormControl(this.company.companyName),
+          'region': new FormControl(this.company.region),
+          'city': new FormControl(this.company.city),
+          'interests': new FormArray([
+          ])
+        }
+      );
+      // const storageRefDownload: firebase.storage.Reference = firebase.storage().ref();
+      // storageRefDownload.child('/photos/url1').getDownloadURL().then((url) => {
+      //  const img = document.getElementById('myimg');
+      //  img.src = url;
+      // const storageRefDelete = firebase.storage().ref('/photos/url1');
+      // storageRefDelete.delete();
+      // });
+
     }
-    this.formUser = new FormGroup(
-      {
-        'password': new FormControl(),
-        'nick': new FormControl(),
-        'firstName': new FormControl(),
-        'lastName': new FormControl(),
-        'region': new FormControl(),
-        'city': new FormControl(),
-        'interests': new FormArray([
-        ])
-      }
-    );
+    }
 
-    this.formCompany = new FormGroup(
-      {
-        'password': new FormControl(),
-        'nick': new FormControl(),
-        'companyName': new FormControl(),
-        'region': new FormControl(),
-        'city': new FormControl(),
-        'interests': new FormArray([
-        ])
-      }
-    );
-   // const storageRefDownload: firebase.storage.Reference = firebase.storage().ref();
-   // storageRefDownload.child('/photos/url1').getDownloadURL().then((url) => {
-    //  const img = document.getElementById('myimg');
-    //  img.src = url;
-     // const storageRefDelete = firebase.storage().ref('/photos/url1');
-     // storageRefDelete.delete();
-    // });
-
-  }
 
  // fileProgress(event: any) {
   //  this.fileData = event.target.files[0];

@@ -27,7 +27,7 @@
         <p>Местоположение: </p>
         <button type="button" (click)="enterDefaultRegionAndCity()"> По умолчанию</button>
         <br>
-        <input [(ngModel)]="enterRegion" [typeahead]="regions" [typeaheadHideResultsOnBlur]="false" placeholder="Область" formControlName="region" (focusin)="deleteCities()" (click)="getCityByRegion()" (mouseleave)="getCityByRegion()" (focusout)="getCityByRegion()">
+        <input [(ngModel)]="enterRegion" [typeahead]="regions" [typeaheadHideResultsOnBlur]="false" placeholder="Область" formControlName="region" (focus)="deleteCities()" (change)="getCityByRegion()">
         <br>
         <input [(ngModel)]="enterCity" [typeahead]="cities" [typeaheadHideResultsOnBlur]="false" placeholder="Город" formControlName="city" >
         <br>
