@@ -5,6 +5,8 @@
       <label> {{item.name}} </label><br>
       <label> Время начала: {{item.timeBegin}} </label><br>
       <label> Время окончания: {{item.timeEnd}} </label><br>
+      <label> День: {{item.day}}</label><br>
+      <label *ngIf="unavailable"> Не активно </label><br>
       <label *ngIf="itUser" (click)="toUserProfile()"> Пользователь: {{user.nick}} </label> <br>
       <label *ngIf="itCompany" (click)="toCompanyProfile()"> Пользователь: {{company.nick}} </label> <br>
     <li>

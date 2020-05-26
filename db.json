@@ -4,7 +4,7 @@
       "login": "tabakov1999",
       "email": "tabakov1999@yandex.ru",
       "password": "1999dfyz",
-      "nick": "lapOCHKA",
+      "nick": "haharu",
       "firstName": "Иван",
       "lastName": "Табаков",
       "about": null,
@@ -17,7 +17,8 @@
       "dateReg": "10.05.2020",
       "idNotification": [
         0,
-        1
+        1,
+        3
       ],
       "idEnterNotififcation": [
         0
@@ -36,7 +37,7 @@
   ],
   "company": [
     {
-      "login": null,
+      "login": "ha",
       "email": "tabakov99@yandex.ru",
       "password": "1999dfyz",
       "nick": "Pupa",
@@ -100,9 +101,25 @@
         0
       ],
       "id": 2
+    },
+    {
+      "name": "Бан",
+      "about": "Бан",
+      "interests": [
+        "Игры"
+      ],
+      "timeBegin": "18:48",
+      "timeEnd": "19:48",
+      "day": "26.05.2020",
+      "region": "Нижегородская (Горьковская)",
+      "city": "Нижний Новгород",
+      "userId": 1,
+      "companyId": null,
+      "commentsId": [
+        0
+      ],
+      "id": 3
     }
   ],
-  "images": [
-
-  ]
+  "images": []
 }

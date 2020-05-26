@@ -21,9 +21,8 @@
         <br>
         <input class="input-login-form" type="text" placeholder="Email" formControlName="email">
         <br>
-        <input class="input-login-form" type="password" placeholder="Пароль" formControlName="password">
+        <input [popover]="passwordMessage" placement="right" triggers="mouseenter:mouseleave" class="input-login-form" type="password" placeholder="Пароль" formControlName="password">
         <br>
-
         <input class="input-login-form" type="text" placeholder="Ник" formControlName="nick">
         <br>
         <input class="input-login-form" type="text" placeholder="Имя" formControlName="firstName">
@@ -39,13 +38,13 @@
             <button (click)="deleteInterest(i)">удалить</button>
           </div>
         </div>
-        <input [(ngModel)]="enterRegion" [typeahead]="regions" [typeaheadHideResultsOnBlur]="false" placeholder="Область" formControlName="region" (focus)="deleteCities()" (change)="getCityByRegion()">
+        <input [(ngModel)]="enterRegion" [typeahead]="regions" [typeaheadHideResultsOnBlur]="false" placeholder="Область" formControlName="region"  (click)="getCityByRegion()"   (change)="getCityByRegion()" (mouseenter)="getCityByRegion()" (mouseleave)="getCityByRegion()">
         <br>
         <input [(ngModel)]="enterCity" [typeahead]="cities" [typeaheadHideResultsOnBlur]="false" placeholder="Город" formControlName="city" >
         <br>
         <input type="text" style="position: absolute; left: 50px" placeholder="Год рождения" bsDatepicker [bsValue]="dateBirthday">
         <br>
-        <button type="submit">
+        <button type="submit" [disabled]="formUser.invalid">
           Зарегистрироваться
         </button>
         <br>
@@ -60,7 +59,7 @@
         <br>
         <input class="input-login-form" type="text" placeholder="Почта" formControlName="email">
         <br>
-        <input class="input-login-form" type="password" placeholder="Пароль" formControlName="password">
+        <input [popover]="passwordMessage" placement="right" triggers="mouseenter:mouseleave" class="input-login-form" type="password" placeholder="Пароль" formControlName="password">
         <br>
         <input class="input-login-form" type="text" placeholder="Ник" formControlName="nick">
         <br>
@@ -75,11 +74,11 @@
             <button (click)="deleteInterest(i)">удалить</button>
           </div>
         </div>
-        <input [(ngModel)]="enterRegion" [typeahead]="regions" [typeaheadHideResultsOnBlur]="false" placeholder="Область" formControlName="region" (focus)="deleteCities()" (change)="getCityByRegion()">
+        <input [(ngModel)]="enterRegion" [typeahead]="regions" [typeaheadHideResultsOnBlur]="false" placeholder="Область" formControlName="region" (click)="getCityByRegion()"   (change)="getCityByRegion()" (mouseenter)="getCityByRegion()" (mouseleave)="getCityByRegion()">
         <br>
         <input [(ngModel)]="enterCity" [typeahead]="cities" [typeaheadHideResultsOnBlur]="false" placeholder="Город" formControlName="city" >
         <br>
-        <button type="submit">
+        <button type="submit" [disabled]="formUser.invalid">
           Зарегистрироваться
         </button>
         <br>
@@ -90,3 +89,10 @@
 
 </div>
 
+<ng-template #passwordMessage>
+    <div>
+      <p>Cимволы пароля: a-z, A-Z, 0-9
+         Минимальная длинна пароля: 8
+         Минимум одна буква и одна цифра</p>
+    </div>
+</ng-template>

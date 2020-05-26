@@ -3,6 +3,7 @@ import {Router} from "@angular/router";
 import {UsersService} from "../../service/users.service";
 import {User} from "../../model/user.model";
 import {Company} from "../../model/company.model";
+import {DatePipe} from "@angular/common";
 
 @Component({
   selector: 'app-notification-card',
@@ -16,8 +17,10 @@ export class NotificationCardComponent implements OnInit {
   company: Company;
   itCompany: boolean;
   itUser: boolean;
+  unavailable: boolean;
   constructor(private router: Router,
-              private userService: UsersService) { }
+              private userService: UsersService,
+              private datePipe: DatePipe) { }
 
   ngOnInit() {
     this.itCompany = false;
@@ -34,6 +37,19 @@ export class NotificationCardComponent implements OnInit {
         this.itCompany = true;
       });
     }
+
+    if (this.item.day > this.datePipe.transform(Date.now(), 'dd.MM.yyyy').toString) {
+      this.unavailable = false;
+    } else if (this.item.day === this.datePipe.transform(Date.now(), 'dd.MM.yyyy').toString) {
+      if (this.item.timeEnding > this.datePipe.transform(Date.now(), 'HH:mm').toString()) {
+        this.unavailable = false;
+      } else {
+        this.unavailable = true;
+      }
+    } else {
+      this.unavailable = true;
+    }
+
   }
 
   toUserProfile() {

@@ -13,7 +13,4 @@ export class  ImageService {
   constructor(private httpClient: HttpClient) {
   }
 
-  addImage(fileData: File): Observable<any> {
-    return this.httpClient.post<any>(`http://localhost:3100/images`, fileData);
-  }
 }

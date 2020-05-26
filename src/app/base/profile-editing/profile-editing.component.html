@@ -1,6 +1,30 @@
 <p>profile-editing works!</p>
-<input type="file" name="image">
+<input type="file" name="image" (change)="fileProgress($event)">
 
-  <img id="myimg">
+  <img id="myava">
 
-
+<form [formGroup]="formUser">
+  <br>
+  <input class="input-login-form" type="text" placeholder="Ник" formControlName="nick">
+  <br>
+  <input class="input-login-form" type="text" placeholder="Имя" formControlName="firstName">
+  <br>
+  <input class="input-login-form" type="text" placeholder="Фамилия" formControlName="lastName">
+  <br>
+  <div *ngIf="uploadedInterest" formArrayName="interests">
+    <div *ngFor="let interest of formUser.controls['interests'].value; let i = index">
+      {{interest}}
+      <button (click)="deleteInterest(i)">удалить</button>
+    </div>
+  </div>
+  <br>
+  <input [(ngModel)]="enterRegion" [typeahead]="regions" [typeaheadHideResultsOnBlur]="false" placeholder="Область" formControlName="region"  (click)="getCityByRegion()"   (change)="getCityByRegion()" (mouseenter)="getCityByRegion()" (mouseleave)="getCityByRegion()">
+  <br>
+  <input [(ngModel)]="enterCity" [typeahead]="cities" [typeaheadHideResultsOnBlur]="false" placeholder="Город" formControlName="city" >
+  <br>
+  <div *ngIf="dateBirthdayUpload">
+    <input type="text" style="position: absolute; left: 50px" placeholder="Год рождения" bsDatepicker [bsValue]="dateBirthday">
+    <br>
+  </div>
+  <button type="button" (click)="updateUser()" [disabled]="formUser.invalid"> Обновить</button>
+</form>
