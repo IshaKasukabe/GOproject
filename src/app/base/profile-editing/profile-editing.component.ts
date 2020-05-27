@@ -122,7 +122,7 @@ export class ProfileEditingComponent implements OnInit {
       img.src = url;
     });
   }
-//
+
   deleteInterest(index: number) {
     (this.formUser.controls['interests'] as FormArray).removeAt(index);
     console.log(index);

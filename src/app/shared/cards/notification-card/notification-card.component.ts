@@ -38,10 +38,10 @@ export class NotificationCardComponent implements OnInit {
       });
     }
 
-    if (this.item.day > this.datePipe.transform(Date.now(), 'dd.MM.yyyy').toString) {
+    if (this.item.day > this.datePipe.transform(Date.now(), 'dd.MM.yyyy').toString()) {
       this.unavailable = false;
-    } else if (this.item.day === this.datePipe.transform(Date.now(), 'dd.MM.yyyy').toString) {
-      if (this.item.timeEnding > this.datePipe.transform(Date.now(), 'HH:mm').toString()) {
+    } else if (this.item.day === this.datePipe.transform(Date.now(), 'dd.MM.yyyy').toString()) {
+      if (this.item.timeEnd > this.datePipe.transform(Date.now(), 'HH:mm').toString()) {
         this.unavailable = false;
       } else {
         this.unavailable = true;

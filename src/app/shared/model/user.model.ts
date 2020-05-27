@@ -14,7 +14,7 @@ export class User {
     public interests?: string[],
     public dateReg?: string,
     public idNotification?: number[],
-    public idEnterNotififcation?: number[],
+    public idEnterNotification?: number[],
     public idFriends?: number[],
     public idMessages?: number[],
     public idComments?: number[],

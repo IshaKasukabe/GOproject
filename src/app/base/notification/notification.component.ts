@@ -5,6 +5,7 @@ import {Subscription} from 'rxjs';
 import {NotificationService} from '../../shared/service/notification.service';
 import {User} from '../../shared/model/user.model';
 import {Company} from '../../shared/model/company.model';
+import {UsersService} from "../../shared/service/users.service";
 
 @Component({
   selector: 'app-notification',
@@ -20,10 +21,13 @@ export class NotificationComponent implements OnInit {
   userSee: User;
   companySee: Company;
   canDelete: boolean;
+  itUser: boolean;
+  added: boolean;
   private routerSubscription: Subscription;
   constructor(private router: Router,
               private route: ActivatedRoute,
-              private notificationService: NotificationService) { }
+              private notificationService: NotificationService,
+              private userService: UsersService) { }
 
    ngOnInit() {
       this.canDelete = false;
@@ -35,21 +39,45 @@ export class NotificationComponent implements OnInit {
         (notification: NotificationModel) =>  {
           this.notification = notification;
           this.getUserOrCompany();
+          this.checkAdded();
         }
       );
   }
 
-  getUserOrCompany()  {
+  checkAdded() {
+    if (this.itUser) {
+      for (let i = 0; i < this.user.idNotification.length; i++) {
+        if (this.notification.id === this.user.idNotification[i]) {
+          this.added = true;
+        } else {
+          this.added = false;
+        }
+      }
+      for (let i = 0; i < this.user.idEnterNotification.length; i++) {
+        if (this.notification.id === this.user.idEnterNotification[i]) {
+          this.added = true;
+        } else {
+          this.added = false;
+        }
+      }
+    } else {
+      this.added = true;
+    }
+  }
+
+  getUserOrCompany() {
 
     if (window.localStorage.getItem('user')) {
       this.user = JSON.parse(window.localStorage.getItem('user'));
       this.company = null;
+      this.itUser = true;
       if (this.notification.userId === this.user.id) {
         this.canDelete = true;
       }
     } else if (window.localStorage.getItem('company')) {
       this.company = JSON.parse(window.localStorage.getItem('company'));
       this.user = null;
+      this.itUser = false;
       if (this.notification.companyId === this.company.id) {
         this.canDelete = true;
       }
@@ -60,6 +88,13 @@ export class NotificationComponent implements OnInit {
     this.router.navigate(['/base', 'mainpage']);
   }
 
+  addNotification() {
+      this.user.idEnterNotification.push(this.notification.id);
+      this.userService.updateUser(this.user).subscribe((user: User) => {
+        window.localStorage.setItem('user', JSON.stringify(user));
+        this.checkAdded();
+      });
+  }
   deleteNotification() {
     this.notificationService.deleteNotification(this.notification.id).subscribe();
 

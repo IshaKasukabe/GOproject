@@ -8,7 +8,15 @@
     <p class="date"> Время окончания {{notification.timeEnd}}</p>
   </div>
   <div class="notification-button">
+    <button *ngIf="!added" (click)="addNotification()"> Добавить </button>
     <button *ngIf="canDelete" (click)="deleteNotification()"> Удалить GO</button>
     <button (click)="toMainPage()"> На главную</button>
+  </div>
+
+  <div>
+    <form>
+      <textarea></textarea>
+      <button> Добавить комментарий </button>
+    </form>
   </div>
 </div>

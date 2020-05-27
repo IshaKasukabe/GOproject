@@ -1,20 +1,20 @@
 <div class="login-page">
-  <div class="login-panel">
-    <div class="logo-icon">GO</div>
-    <form [formGroup]="form" (ngSubmit)="onSubmit()" >
-      <div class="login-form">
-        <input class="input-login-form-1" type="text" placeholder="Логин или почта" formControlName="login">
-        <br>
-        <input class="input-login-form-2" type="password" placeholder="Пароль" formControlName="password">
-        <br>
-        <button class="in-icon" type="submit">
-          Войти
-        </button>
-        <br>
-      </div>
-    </form>
-  </div>
-  <div class="to-registration-panel">
-    <div class="to-registration-text" (click)="toRegistration()"> Нет аккаунта?</div>
-  </div>
+    <div class="login-panel">
+      <div class="logo-icon">GO</div>
+      <form [formGroup]="form" (ngSubmit)="onSubmit()" >
+        <div class="login-form">
+          <input class="input-login-form-1" type="text" placeholder="Логин или почта" formControlName="login">
+          <br>
+          <input class="input-login-form-2" type="password" placeholder="Пароль" formControlName="password">
+          <br>
+          <button class="in-icon" type="submit">
+            Войти
+          </button>
+          <br>
+        </div>
+      </form>
+    </div>
+    <div class="to-registration-panel">
+      <div class="to-registration-text" (click)="toRegistration()"> Нет аккаунта?</div>
+    </div>
 </div>
