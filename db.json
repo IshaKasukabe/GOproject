@@ -31,7 +31,9 @@
         0
       ],
       "idComments": [
-        0
+        0,
+        1,
+        2
       ],
       "id": 1
     }
@@ -99,7 +101,9 @@
       "userId": null,
       "companyId": 1,
       "commentsId": [
-        0
+        0,
+        1,
+        2
       ],
       "id": 2
     },
@@ -122,5 +126,20 @@
       "id": 3
     }
   ],
-  "images": []
+  "comments": [
+    {
+      "text": "Мой коммент",
+      "notificationId": 2,
+      "userId": 1,
+      "compnayId": null,
+      "id": 1
+    },
+    {
+      "text": "jjjjjjjjjjjjjjjjjjj",
+      "notificationId": 2,
+      "userId": 1,
+      "compnayId": null,
+      "id": 2
+    }
+  ]
 }

@@ -16,6 +16,10 @@ export class  NotificationService {
   getNotificationByInterest(interest: string): Observable<NotificationModel[]> {
     return this.httpClient.get<NotificationModel[]>(`http://localhost:3200/notifications?q=${interest}`);
   }
+
+  updateNotification(notification: NotificationModel): Observable<NotificationModel> {
+    return this.httpClient.put<NotificationModel>(`http://localhost:3200/notifications/${notification.id}`, notification);
+  }
   getNotificationById(idNotification: number): Observable<NotificationModel> {
     return this.httpClient.get<NotificationModel> (`http://localhost:3200/notifications?id=${idNotification}`)
       .pipe(map((notification: NotificationModel) => notification[0] ? notification[0] : undefined));

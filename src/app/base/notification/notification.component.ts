@@ -6,6 +6,9 @@ import {NotificationService} from '../../shared/service/notification.service';
 import {User} from '../../shared/model/user.model';
 import {Company} from '../../shared/model/company.model';
 import {UsersService} from "../../shared/service/users.service";
+import {CommentModel} from "../../shared/model/comment.model";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {CommentsService} from "../../shared/service/comments.service";
 
 @Component({
   selector: 'app-notification',
@@ -23,11 +26,13 @@ export class NotificationComponent implements OnInit {
   canDelete: boolean;
   itUser: boolean;
   added: boolean;
+  formComment: FormGroup;
   private routerSubscription: Subscription;
   constructor(private router: Router,
               private route: ActivatedRoute,
               private notificationService: NotificationService,
-              private userService: UsersService) { }
+              private userService: UsersService,
+              private commentsService: CommentsService) { }
 
    ngOnInit() {
       this.canDelete = false;
@@ -42,8 +47,42 @@ export class NotificationComponent implements OnInit {
           this.checkAdded();
         }
       );
+
+      this.formComment = new FormGroup({
+        'text': new FormControl(null, [Validators.required])
+      });
   }
 
+  onSubmitComment() {
+    const {text} = this.formComment.value;
+    if (this.itUser) {
+      const newComment = new CommentModel(text, this.notification.id, this.user.id, null);
+      this.commentsService.createNewComment(newComment).subscribe( (comment: CommentModel) => {
+        this.user.idComments.push(comment.id);
+        this.userService.updateUser(this.user).subscribe((user: User) => {
+          window.localStorage.setItem('user', JSON.stringify(user));
+        });
+        this.notification.commentsId.push(comment.id);
+        this.notificationService.updateNotification(this.notification).subscribe( (notification: NotificationModel) => {
+          this.notification = notification;
+        });
+      });
+    } else {
+      const newComment = new CommentModel(text, this.notification.id, null, this.company.id);
+      this.commentsService.createNewComment(newComment).subscribe( (comment: CommentModel) => {
+        this.company.idComments.push(comment.id);
+        this.userService.updateCopmany(this.company).subscribe((company: Company) => {
+          window.localStorage.setItem('company', JSON.stringify(company));
+        });
+        this.notification.commentsId.push(comment.id);
+        this.notificationService.updateNotification(this.notification).subscribe( (notification: NotificationModel) => {
+          this.notification = notification;
+        });
+      });
+    }
+
+
+  }
   checkAdded() {
     if (this.itUser) {
       for (let i = 0; i < this.user.idNotification.length; i++) {

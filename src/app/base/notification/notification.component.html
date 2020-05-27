@@ -14,9 +14,10 @@
   </div>
 
   <div>
-    <form>
-      <textarea></textarea>
-      <button> Добавить комментарий </button>
+    <form [formGroup]="formComment" (ngSubmit)="onSubmitComment()">
+      <textarea formControlName="text">
+      </textarea>
+      <button (submit)="onSubmitComment()" [disabled]="formComment.invalid"> Добавить комментарий </button>
     </form>
   </div>
 </div>

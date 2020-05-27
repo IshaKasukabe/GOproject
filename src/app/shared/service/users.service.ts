@@ -66,7 +66,9 @@ export class  UsersService {
   updateUser(user: User): Observable<User> {
     return this.httpClient.put<User>(`http://localhost:3200/users/${user.id}`, user);
   }
-
+  updateCopmany(company: Company): Observable<Company> {
+    return this.httpClient.put<Company>(`http://localhost:3200/copmany/${company.id}`, company);
+  }
   getAllUsers(): Observable<User[]> {
     return this.httpClient.get<User[]>(`http://localhost:3200/users`);
   }

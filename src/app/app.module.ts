@@ -21,6 +21,7 @@ import {ImageService} from "./shared/service/image.service";
 import { AngularFireModule } from "angularfire2";
 import { AngularFireDatabaseModule} from 'angularfire2/database';
 import { environment} from "../environments/environment";
+import {CommentsService} from "./shared/service/comments.service";
 
 
 @NgModule({
@@ -42,6 +43,7 @@ import { environment} from "../environments/environment";
 
   ],
   providers: [
+    CommentsService,
     UsersService,
     AuthService,
     NotificationService,
